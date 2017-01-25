@@ -4,10 +4,15 @@ export default class Dashboard extends Component {
   constructor(props) {
     super(props)
   }
-  componentDidMount() {
+  componentDidUpdate() {
     console.log(this.props)
   }
-  static propTypes = {}
+  renderItem = (item) => {
+    return (
+      <div>{item.name}</div>
+    )
+    
+  }
   render () {
     return (
       <div className="dashboard">
@@ -17,6 +22,8 @@ export default class Dashboard extends Component {
         {this.props.project.isFetching === true
           ? <div>Loading...</div>
           : null }
+
+          {this.props.project.tree.map((item) => this.renderItem(item))}
       </div>
     )
   }
