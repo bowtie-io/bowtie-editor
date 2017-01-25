@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react'
+import { Link } from 'react-router'
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -15,9 +16,9 @@ export default class Dashboard extends Component {
   renderFileItem = (item) => {
       return (
         <div>
-          <a href={item.download_url}>
+        <Link to={`/dashboard/file/${item.name}`}>
           {item.name} - FILE
-          </a>
+          </Link>
         </div>
       )
   }
@@ -48,6 +49,7 @@ export default class Dashboard extends Component {
           : null }
 
           {this.props.project.tree.map((item) => this.renderItem(item))}
+          {this.props.children}
       </div>
     )
   }

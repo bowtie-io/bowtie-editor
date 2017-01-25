@@ -3,9 +3,11 @@ import CoreLayout from '../layouts/CoreLayout'
 import Home from './Home'
 import CounterRoute from './Counter'
 import DashboardRoute from './Dashboard'
+import reactRouterToArray from 'react-router-to-array'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
+
 
 export const createRoutes = (store) => ({
   path        : '/',
@@ -14,7 +16,6 @@ export const createRoutes = (store) => ({
   childRoutes : [
     CounterRoute(store),
     DashboardRoute(store),
-
   ]
 })
 
