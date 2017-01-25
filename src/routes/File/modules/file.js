@@ -23,7 +23,7 @@ export function requestFile() {
 export function receiveFile(data) {
   return {
     type: 'RECEIVE_FILE',
-    contents: data
+    content: data
     }
 }
 export function failFile(data) {
@@ -38,10 +38,6 @@ export function fetchFile(fileName) {
     dispatch(requestFile()) // set state to fetching
     return fetch(`https://api.github.com/repos/igolden/igolden.github.io/contents/${fileName}`, {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-      },
       })
       .then((response) => {
         if (response.ok) {
@@ -50,7 +46,8 @@ export function fetchFile(fileName) {
           return null
         }
         })
-      .then((data) => dispatch(receiveFile(data)))
+      .then((file) => file.content)
+      .then((content) => dispatch(receiveFile(content)))
       .catch((err) => console.error(err))
   }
 }
@@ -67,7 +64,7 @@ export default function file (state = initialState, action) {
   case RECEIVE_FILE :
     return {
     ...state,
-    contents: action.contents
+    content: action.content
   }
   case FAIL_FILE :
     return {
