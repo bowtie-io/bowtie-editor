@@ -146,6 +146,16 @@ webpackConfig.module.loaders.push({
   ]
 })
 webpackConfig.module.loaders.push({
+  test    : /\.sass$/,
+  exclude : null,
+  loaders : [
+    'style',
+    BASE_CSS_LOADER,
+    'postcss',
+    'sass?sourceMap'
+  ]
+})
+webpackConfig.module.loaders.push({
   test    : /\.css$/,
   exclude : null,
   loaders : [

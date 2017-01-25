@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Header } from '~/components'
 
 export default class Counter extends Component {
   constructor(props) {
@@ -15,7 +14,6 @@ export default class Counter extends Component {
           Increment
         </button>
         {' '}
-        <Header />
       </div>
     )
   }

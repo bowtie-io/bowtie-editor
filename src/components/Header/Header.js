@@ -1,16 +1,16 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
-import './Header.scss'
+import './Header.sass'
 
 export const Header = () => (
-  <div>
-    <h1>React Redux Starter Kit</h1>
+  <div className="sidebar">
+    <h1>Bowtie.io</h1>
     <IndexLink to='/' activeClassName='route--active'>
-      Home
+      Projects
     </IndexLink>
-    {' · '}
-    <Link to='/counter' activeClassName='route--active'>
-      Counter
+    <hr />
+    <Link to='/file_browser' activeClassName='route--active'>
+      Dashboard
     </Link>
   </div>
 )
