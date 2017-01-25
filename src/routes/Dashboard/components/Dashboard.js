@@ -3,15 +3,39 @@ import React, { PropTypes, Component } from 'react'
 export default class Dashboard extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      files : [],
+      dirs  : []
+
+    }
   }
-  componentDidUpdate() {
-    console.log(this.props)
+  componentWillMount() {
+    this.props.fetchProject()
+  }
+  renderFileItem = (item) => {
+      return (
+        <div>
+          <a href={item.download_url}>
+          {item.name} - FILE
+          </a>
+        </div>
+      )
+  }
+  renderDirItem = (item) => {
+      return (
+        <div>
+          <a href={item._links.git}>
+             {item.name} - DIR
+           </a>
+         </div> 
+      )
   }
   renderItem = (item) => {
-    return (
-      <div>{item.name}</div>
-    )
-    
+    if (item.type === "file") {
+      return this.renderFileItem(item)
+    } else {
+      return this.renderDirItem(item)
+    }
   }
   render () {
     return (

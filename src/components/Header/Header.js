@@ -9,7 +9,7 @@ export const Header = () => (
       Projects
     </IndexLink>
     <hr />
-    <Link to='/file_browser' activeClassName='route--active'>
+    <Link to='/dashboard' activeClassName='route--active'>
       Dashboard
     </Link>
   </div>
