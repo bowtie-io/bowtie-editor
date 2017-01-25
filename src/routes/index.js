@@ -3,6 +3,7 @@ import CoreLayout from '../layouts/CoreLayout'
 import Home from './Home'
 import CounterRoute from './Counter'
 import DashboardRoute from './Dashboard'
+import EditorRoute from './Editor'
 import reactRouterToArray from 'react-router-to-array'
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -16,6 +17,7 @@ export const createRoutes = (store) => ({
   childRoutes : [
     CounterRoute(store),
     DashboardRoute(store),
+    EditorRoute(store),
   ]
 })
 
