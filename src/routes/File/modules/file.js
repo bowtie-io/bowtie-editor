@@ -1,9 +1,8 @@
 /********************************************************
- * FileSingle reducer
+ * FileReducer
  *
- * Used for fetching the data for one file, and initiating
- * and editing sequence. This reducer is also responsible
- * for POSTing to the github api to save the file
+ * Will handle the actions and state surrounding the
+ * fetch and render of remote file contents.
  *
  * @flow
  ********************************************************/
@@ -34,10 +33,10 @@ export function failFile(data) {
     }
 }
 
-export function fetchFile(url) {
+export function fetchFile(fileName) {
   return dispatch => { // return redux-thunk
     dispatch(requestFile()) // set state to fetching
-    return fetch(url, {
+    return fetch(`https://api.github.com/repos/igolden/igolden.github.io/contents/${fileName}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +57,7 @@ export function fetchFile(url) {
 
 
 
-export default function fileSingle (state = initialState, action) {
+export default function file (state = initialState, action) {
   switch (action.type) {
   case REQUEST_FILE :
     return {

@@ -16,7 +16,7 @@ export default class Project extends Component {
   renderFileItem = (item) => {
       return (
         <div>
-        <Link to={`/project/file/${item.name}`}>
+        <Link to={{pathname: `/project/file/${item.name}`, query: {link: 'https://google.com'}}}>
           {item.name} - FILE
           </Link>
         </div>

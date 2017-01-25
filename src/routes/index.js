@@ -3,6 +3,7 @@ import CoreLayout from '../layouts/CoreLayout'
 import Home from './Home'
 import ProjectRoute from './Project'
 import ContentEditorRoute from './ContentEditor'
+import FileRoute from './File'
 import reactRouterToArray from 'react-router-to-array'
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -16,6 +17,7 @@ export const createRoutes = (store) => ({
   childRoutes : [
     ProjectRoute(store),
     ContentEditorRoute(store),
+    FileRoute(store),
   ]
 })
 
