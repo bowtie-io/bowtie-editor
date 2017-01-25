@@ -1,8 +1,7 @@
 // We only need to import the modules necessary for initial render
 import CoreLayout from '../layouts/CoreLayout'
 import Home from './Home'
-import CounterRoute from './Counter'
-import DashboardRoute from './Dashboard'
+import ProjectRoute from './Project'
 import ContentEditorRoute from './ContentEditor'
 import reactRouterToArray from 'react-router-to-array'
 
@@ -15,8 +14,7 @@ export const createRoutes = (store) => ({
   component   : CoreLayout,
   indexRoute  : Home,
   childRoutes : [
-    CounterRoute(store),
-    DashboardRoute(store),
+    ProjectRoute(store),
     ContentEditorRoute(store),
   ]
 })

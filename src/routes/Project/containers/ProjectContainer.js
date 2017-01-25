@@ -1,6 +1,6 @@
-import Dashboard from '../components/Dashboard'
+import Project from '../components/Project'
 import { connect } from 'react-redux'
-import { fetchProject } from '../modules/dashboard'
+import { fetchProject } from '../modules/project'
 
 function mapStateToProps ({project}, {navigator}) {
   return {
@@ -16,4 +16,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Dashboard)
+)(Project)

@@ -9,8 +9,8 @@ export const Header = () => (
       Projects
     </IndexLink>
     <hr />
-    <Link to='/dashboard' activeClassName='route--active'>
-      Dashboard
+    <Link to='/project' activeClassName='route--active'>
+    Project
     </Link>
     <hr />
     <Link to='/editor' activeClassName='route--active'>

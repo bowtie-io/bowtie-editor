@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import { Link } from 'react-router'
 
-export default class Dashboard extends Component {
+export default class Project extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -16,7 +16,7 @@ export default class Dashboard extends Component {
   renderFileItem = (item) => {
       return (
         <div>
-        <Link to={`/dashboard/file/${item.name}`}>
+        <Link to={`/project/file/${item.name}`}>
           {item.name} - FILE
           </Link>
         </div>
@@ -40,7 +40,7 @@ export default class Dashboard extends Component {
   }
   render () {
     return (
-      <div className="dashboard">
+      <div className="project">
         <button onClick={() => this.props.fetchProject()}>
           Fetch
         </button>
