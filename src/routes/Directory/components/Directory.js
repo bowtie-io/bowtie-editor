@@ -29,7 +29,7 @@ export default class Directory extends Component {
   render () {
     return (
       <div className="">
-          Directory
+      {this.props.params.directoryPath} Directory
       </div>
     )
   }

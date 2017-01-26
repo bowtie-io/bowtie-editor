@@ -16,18 +16,18 @@ export default class Project extends Component {
   renderFileItem = (item, index) => {
       return (
         <div>
-        <Link to={{pathname: `/project/file/${item.name}`, query: {link: 'https://google.com'}}}>
+        <Link to={{pathname: `/project/file/${item.name}`}}>
           {item.name} - FILE
           </Link>
         </div>
       )
   }
-  renderDirItem = (item) => {
+  renderDirItem = (item, index) => {
       return (
         <div>
-          <a href={item._links.git}>
+          <Link to={{pathname: `/project/${item.name}`}}>
              {item.name} - DIR
-           </a>
+           </Link>
          </div> 
       )
   }
