@@ -1,14 +1,15 @@
 import React, { PropTypes, Component } from 'react'
 import { Link } from 'react-router'
 import { FileBrowser } from '~/components'
+import  CodeMirror  from 'react-codemirror'
 
 export default class Project extends Component {
   constructor(props) {
     super(props)
     this.state = {
       files : [],
-      dirs  : []
-
+      dirs  : [],
+      code: "// Code",
     }
   }
   componentWillMount() {
