@@ -26,10 +26,15 @@ export default class Directory extends Component {
   static propTypes = {
     // Document all properties
   }
+  componentWillMount() {
+    //this.props.fetchDirectory(this.props.directory.path)
+  }
   render () {
     return (
       <div className="">
       {this.props.params.directoryPath} Directory
+      <br />
+      <button onClick={() => this.props.fetchDirectory} className="btn btn-primary">FETCH</button>
       </div>
     )
   }

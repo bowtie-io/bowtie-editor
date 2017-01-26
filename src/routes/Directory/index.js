@@ -1,7 +1,7 @@
 import { injectReducer } from '~/store/reducers'
 
 export default (store) => ({
-  path : 'project/:directoryPath',
+  path : 'project/:directoryPath/**',
 
   getComponent (nextState, cb) {
     require.ensure([], (require) => {
