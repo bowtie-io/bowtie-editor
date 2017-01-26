@@ -8,7 +8,9 @@
  *
  * @flow
  ********************************************************/
-const initialState = {}
+const initialState = {
+  isFetching: true
+}
 const REQUEST_DIR = 'REQUEST_DIR'
 const RECEIVE_DIR = 'RECEIVE_DIR'
 const FAIL_DIR    = 'FAIL_DIR'
@@ -33,7 +35,7 @@ export function failDir(data) {
 }
 export function fetchDirectory(path) {
   return dispatch => { // return redux-thunk
-    dispatch(requestDirectory()) // set state to fetching
+    dispatch(requestDir()) // set state to fetching
     return fetch(`https://api.github.com/repos/igolden/igolden.github.io/contents/${path}`, {
       method: "GET",
       headers: {
@@ -48,7 +50,7 @@ export function fetchDirectory(path) {
         return null
       }
     })
-    .then((data) => dispatch(receiveDirectory(data)))
+    .then((data) => dispatch(receiveDir(data)))
     .catch((err) => console.error(err))
   }
 }

@@ -14,6 +14,8 @@
  ********************************************************/
 
 import React, { PropTypes, Component } from 'react'
+import { FileBrowser } from '~/components'
+import { sanitizeFileRoute, sanitizeDirRoute, sanitizeLastDir } from '~/utils/sanitize'
 
 export default class Directory extends Component {
   constructor(props) {
@@ -26,15 +28,20 @@ export default class Directory extends Component {
   static propTypes = {
     // Document all properties
   }
-  componentWillMount() {
-    //this.props.fetchDirectory(this.props.directory.path)
+  componentDidMount() {
+    this.props.fetchDirectory(sanitizeDirRoute(this.props.location.pathname))
   }
   render () {
     return (
       <div className="">
-      {this.props.params.directoryPath} Directory
+        {this.props.directory.isFetching === true
+          ? <div>Loading...</div>
+          : <FileBrowser 
+                files={this.props.directory}/> }
+      {sanitizeLastDir(this.props.location.pathname)} Directory
       <br />
       <button onClick={() => this.props.fetchDirectory} className="btn btn-primary">FETCH</button>
+      <hr />
       </div>
     )
   }
