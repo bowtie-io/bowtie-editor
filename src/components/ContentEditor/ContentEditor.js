@@ -41,6 +41,7 @@ export default class ContentEditor extends Component {
     // Document all properties
   }
   onEditorStateChange = (editorState) => {
+    this.setState({editorState})
   }
   onFileUpload = (payload) => {
   }

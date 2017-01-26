@@ -13,10 +13,10 @@ const initialState = {
   sha: "",
   commitMessage: ""
 }
-const REQUEST_FILE = 'REQUEST_FILE'
-const RECEIVE_FILE = 'RECEIVE_FILE'
-const FAIL_FILE    = 'FAIL_FILE'
-const DECODE_FILE = 'DECODE_FILE'
+const REQUEST_FILE      = 'REQUEST_FILE'
+const RECEIVE_FILE      = 'RECEIVE_FILE'
+const RECEIVE_FILE_FAIL = 'FAIL_FILE'
+const DECODE_FILE       = 'DECODE_FILE'
 
 export function decodeFile(data) {
   return {
@@ -24,8 +24,6 @@ export function decodeFile(data) {
     content: data, 
     }
 }
-
-
 
 export function requestFile() {
   return {
@@ -39,9 +37,9 @@ export function receiveFile(sha, path) {
     path: path
     }
 }
-export function failFile(data) {
+export function receiveFileFail(data) {
   return {
-    type: 'FAIL_FILE',
+    type: 'RECEIVE_FILE_FAIL',
     error: data
     }
 }
@@ -90,7 +88,7 @@ export default function file (state = initialState, action) {
     isFetching: false,
     content: action.content
   }
-  case FAIL_FILE :
+  case RECEIVE_FILE_FAIL :
     return {
     ...state,
     isFetching: false,
