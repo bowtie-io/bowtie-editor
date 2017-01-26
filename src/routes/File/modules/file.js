@@ -99,22 +99,21 @@ export function receiveUpdatedFile(sha, path) {
 export function updateFile(content, sha, path, message) {
   return dispatch => { // return redux-thunk
     dispatch(postFile()) // set state to fetching
-    return fetch(`https://api.github.com/repos/igolden/igolden.github.io/contents/index.html`, {
+    return fetch(`https://api.github.com/repos/igolden/igolden.github.io/contents/${path}`, {
       method            : "PUT",
       headers           : {
         "Content-Type"  : "application/json",
-        "Accept"        : "application/json",
-        "Authorization" : "Basic aWdvbGRlbjpCbGluZ2VyMTUy"
+        "Authorization" : "token f2d64d14d1b70994ed6a555140c6b6e9101c616c"
       },
-      body: {
-        "message": message,
+      body: JSON.stringify({
+        "message": "RCTCommit",
         "committer": {
           "name": "Ian Golden",
           "email": "ian@iangolden.com"
         },
-        "content": content,
+        "content": new Buffer(content).toString('base64'),
         "sha": sha
-      }
+      })
     })
       .then((response) => {
         if (response.ok) {

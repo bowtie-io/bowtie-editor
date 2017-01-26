@@ -13,7 +13,7 @@ const initialState = {
 }
 const REQUEST_PROJECT = 'REQUEST_PROJECT'
 const RECEIVE_PROJECT = 'RECEIVE_PROJECT'
-const FAIL_PROJECT = 'FAIL_PROJECT'
+const FAIL_PROJECT    = 'FAIL_PROJECT'
 
 export function requestProject() {
   return {
@@ -41,6 +41,7 @@ export function fetchProject() {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
+        "Authorization" : "token f2d64d14d1b70994ed6a555140c6b6e9101c616c"
       },
     })
       .then((response) => {
@@ -57,22 +58,22 @@ export function fetchProject() {
 
 export default function project (state = initialState, action) {
   switch (action.type) {
-  case REQUEST_PROJECT :
-    return {
-    ...state,
-    isFetching: true,
-  }
-  case RECEIVE_PROJECT :
-    return {
-    ...state,
-    isFetching: false,
-    tree: action.tree
-  }
-  case FAIL_PROJECT :
-    return {
-    ...state,
-    fetchError: action.error
-  }
+    case REQUEST_PROJECT :
+      return {
+      ...state,
+      isFetching: true,
+    }
+    case RECEIVE_PROJECT :
+      return {
+      ...state,
+      isFetching: false,
+      tree: action.tree
+    }
+    case FAIL_PROJECT :
+      return {
+      ...state,
+      fetchError: action.error
+    }
     default :
       return state
   }

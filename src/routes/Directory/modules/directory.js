@@ -41,6 +41,7 @@ export function fetchDirectory(path) {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
+        "Authorization" : "token f2d64d14d1b70994ed6a555140c6b6e9101c616c"
       },
     })
     .then((response) => {

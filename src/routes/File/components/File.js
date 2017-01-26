@@ -10,6 +10,7 @@
 
 import React, { PropTypes, Component } from 'react'
 import { ContentEditor } from '~/components'
+import { sanitizeDirRoute } from '~/utils/sanitize'
 
 export default class File extends Component {
   constructor(props) {
@@ -18,6 +19,10 @@ export default class File extends Component {
       // set initialState
       // local Class state only
     }
+
+
+  }
+  componentDidMount() {
     this.props.fetchFile(this.props.params.fileName)
   }
   static propTypes = {
