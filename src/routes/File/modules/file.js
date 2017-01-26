@@ -47,6 +47,7 @@ export function fetchFile(fileName) {
         }
         })
       .then((file) => file.content)
+      .then((b64) => Buffer.from(b64, 'base64').toString('ascii'))
       .then((content) => dispatch(receiveFile(content)))
       .catch((err) => console.error(err))
   }
@@ -64,11 +65,13 @@ export default function file (state = initialState, action) {
   case RECEIVE_FILE :
     return {
     ...state,
+    isFetching: false,
     content: action.content
   }
   case FAIL_FILE :
     return {
     ...state,
+    isFetching: false,
     fileError: action.error
   }
     default :

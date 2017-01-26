@@ -18,17 +18,17 @@ export default class File extends Component {
       // set initialState
       // local Class state only
     }
+    this.props.fetchFile(this.props.params.fileName)
   }
   static propTypes = {
     // Document all properties
   }
-  componentWillMount() {
-    this.props.fetchFile(this.props.params.fileName)
-  }
   render () {
     return (
       <div className="">
-        <ContentEditor />
+      { this.props.file.isFetching === true
+        ? <div>Loading...</div>
+        : <ContentEditor content={this.props.file.content} /> }
       </div>
     )
   }

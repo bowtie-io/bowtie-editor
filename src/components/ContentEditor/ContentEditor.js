@@ -17,7 +17,7 @@
  ********************************************************/
 
 import React, { PropTypes, Component } from 'react'
-import { EditorState, ContentState, convertFromHTML, ContentBlock } from 'draft-js'
+import { EditorState, ContentState, convertFromText, ContentBlock } from 'draft-js'
 import { Editor } from 'react-draft-wysiwyg'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
@@ -25,21 +25,21 @@ export default class ContentEditor extends Component {
   constructor(props) {
     super(props)
     this.focus = () => this.refs.editor.focus();
-    const sampleMarkup =
-      '<b>Bold text</b>, <i>Italic text</i><br/ ><br />' +
-      '<a href="http://www.facebook.com">Example link</a>';
-    const blocksFromHTML = convertFromHTML(sampleMarkup);
-    const state = ContentState.createFromBlockArray(blocksFromHTML);
-    this.state = {
-      editorState: EditorState.createWithContent(state)
+    if (this.props.content) {
+      const state = ContentState.createFromText(this.props.content) || "";
+      this.state = {
+        editorState: EditorState.createWithContent(state)
+      }
+    } else {
+      this.state = {
+        editorState: EditorState.createEmpty()
+      }
     }
   }
   static propTypes = {
     // Document all properties
   }
   onEditorStateChange = (editorState) => {
-    console.log(this.state)
-    
   }
   onFileUpload = (payload) => {
   }
