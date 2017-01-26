@@ -13,10 +13,16 @@ const initialState = {
   sha: "",
   commitMessage: ""
 }
-const REQUEST_FILE      = 'REQUEST_FILE'
-const RECEIVE_FILE      = 'RECEIVE_FILE'
-const RECEIVE_FILE_FAIL = 'FAIL_FILE'
-const DECODE_FILE       = 'DECODE_FILE'
+
+//////////////////////////////////////////
+//	All of the incoming requests to
+//	populate our data.
+//////////////////////////////////////////
+
+const REQUEST_FILE = 'REQUEST_FILE'
+const RECEIVE_FILE = 'RECEIVE_FILE'
+const FILE_FAIL    = 'FILE_FAIL'
+const DECODE_FILE  = 'DECODE_FILE'
 
 export function decodeFile(data) {
   return {
@@ -37,9 +43,9 @@ export function receiveFile(sha, path) {
     path: path
     }
 }
-export function receiveFileFail(data) {
+export function fileFail(data) {
   return {
-    type: 'RECEIVE_FILE_FAIL',
+    type: 'FILE_FAIL',
     error: data
     }
 }
@@ -67,6 +73,61 @@ export function fetchFile(fileName) {
   }
 }
 
+//////////////////////////////////////////
+//	All of the outbound requests to 
+//	interface with Github and other
+//	external resources
+//////////////////////////////////////////
+
+const POST_FILE            = 'UPDATE_FILE'
+const RECEIVE_UPDATED_FILE = 'RECEIVE_UPDATED_FILE'
+
+export function postFile() {
+  return {
+    type: 'POST_FILE',
+    }
+}
+
+export function receiveUpdatedFile(sha, path) {
+  return {
+    type: 'RECEIVE_UPDATED_FILE',
+    sha: sha,
+    path: path
+    }
+}
+
+export function updateFile(content, sha, path, message) {
+  return dispatch => { // return redux-thunk
+    dispatch(postFile()) // set state to fetching
+    return fetch(`https://api.github.com/repos/igolden/igolden.github.io/contents/index.html`, {
+      method            : "PUT",
+      headers           : {
+        "Content-Type"  : "application/json",
+        "Accept"        : "application/json",
+        "Authorization" : "Basic aWdvbGRlbjpCbGluZ2VyMTUy"
+      },
+      body: {
+        "message": message,
+        "committer": {
+          "name": "Ian Golden",
+          "email": "ian@iangolden.com"
+        },
+        "content": content,
+        "sha": sha
+      }
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
+        } else {
+          return null
+        }
+        })
+      .then((data) => dispatch(receiveUpdatedFile(data)))
+      .catch((err) => console.error(err))
+  }
+}
+
 
 
 export default function file (state = initialState, action) {
@@ -88,11 +149,22 @@ export default function file (state = initialState, action) {
     isFetching: false,
     content: action.content
   }
-  case RECEIVE_FILE_FAIL :
+  case FILE_FAIL :
     return {
     ...state,
     isFetching: false,
     fileError: action.error
+  }
+  case POST_FILE :
+    return {
+    ...state,
+    isFetching: true
+  }
+  case RECEIVE_UPDATED_FILE :
+    return {
+    ...state,
+    sha: action.sha,
+    path: action.path
   }
     default :
       return state

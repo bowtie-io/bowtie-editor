@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../../components/Header'
 import './CoreLayout.sass'
-import '../../styles/core.scss'
+import '../../styles/core.sass'
 
 export const CoreLayout = ({ children }) => (
   <div>

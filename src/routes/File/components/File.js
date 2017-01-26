@@ -28,7 +28,11 @@ export default class File extends Component {
       <div className="">
       { this.props.file.isFetching === true
         ? <div>Loading...</div>
-        : <ContentEditor content={this.props.file.content} /> }
+        : <ContentEditor 
+              sha={this.props.file.sha} 
+              path={this.props.file.path} 
+              content={this.props.file.content} 
+              updateFile={this.props.updateFile} /> }
       </div>
     )
   }

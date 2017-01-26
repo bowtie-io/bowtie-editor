@@ -13,7 +13,7 @@ export default class Project extends Component {
   componentWillMount() {
     this.props.fetchProject()
   }
-  renderFileItem = (item) => {
+  renderFileItem = (item, index) => {
       return (
         <div>
         <Link to={{pathname: `/project/file/${item.name}`, query: {link: 'https://google.com'}}}>
@@ -31,7 +31,7 @@ export default class Project extends Component {
          </div> 
       )
   }
-  renderItem = (item) => {
+  renderItem = (item, index) => {
     if (item.type === "file") {
       return this.renderFileItem(item)
     } else {

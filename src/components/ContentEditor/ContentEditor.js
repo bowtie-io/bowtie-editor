@@ -25,6 +25,14 @@ import './ContentEditor.sass'
 export default class ContentEditor extends Component {
   constructor(props) {
     super(props)
+
+    //////////////////////////////////////////
+    //	Constants for building the commit
+    //////////////////////////////////////////
+    const sha           = this.props.sha
+    const path          = this.props.path
+    const commitMessage = "Hello World Commit"
+    
     this.focus = () => this.refs.editor.focus();
     if (this.props.content) {
       const state = ContentState.createFromText(this.props.content) || "";
@@ -48,6 +56,7 @@ export default class ContentEditor extends Component {
   render () {
     return (
       <div className="contentEditor">
+      <button onClick={ () => this.props.updateFile(this.state.editorState.getCurrentContent().getPlainText(), this.props.sha, this.props.path, this.props.commitMessage)  }>Update</button>
         <Editor
           toolbarClassName="home-toolbar"
           wrapperClassName="home-wrapper"
