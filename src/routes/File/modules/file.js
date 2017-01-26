@@ -79,7 +79,7 @@ export function fetchFile(fileName) {
 //	external resources
 //////////////////////////////////////////
 
-const POST_FILE            = 'UPDATE_FILE'
+const POST_FILE            = 'POST_FILE'
 const RECEIVE_UPDATED_FILE = 'RECEIVE_UPDATED_FILE'
 
 export function postFile() {
@@ -162,6 +162,7 @@ export default function file (state = initialState, action) {
   case RECEIVE_UPDATED_FILE :
     return {
     ...state,
+    isFetching: false,
     sha: action.sha,
     path: action.path
   }

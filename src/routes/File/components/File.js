@@ -30,14 +30,16 @@ export default class File extends Component {
   }
   render () {
     return (
-      <div className="">
-      { this.props.file.isFetching === true
-        ? <div>Loading...</div>
-        : <ContentEditor 
-              sha={this.props.file.sha} 
-              path={this.props.file.path} 
-              content={this.props.file.content} 
-              updateFile={this.props.updateFile} /> }
+      <div className="row">
+        <div className="col-md-10">
+          { this.props.file.isFetching === true
+            ? <div>Loading...</div>
+            : <ContentEditor 
+                  sha={this.props.file.sha} 
+                  path={this.props.file.path} 
+                  content={this.props.file.content} 
+                  updateFile={this.props.updateFile} /> }
+        </div>
       </div>
     )
   }

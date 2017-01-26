@@ -6,11 +6,9 @@ import '../../styles/core.sass'
 export const CoreLayout = ({ children }) => (
   <div>
   <Header />
-  <div className='coreLayout container text-center'>
     <div className='main'>
       {children}
     </div>
-  </div>
   </div>
 )
 

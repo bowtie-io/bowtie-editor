@@ -48,7 +48,7 @@ export default class FileBrowser extends Component {
   render () {
     console.log(this.props)
     return (
-      <div className="">
+      <div className="container">
         FileBrowser
         <hr />
         {this.props.files.tree.map((item) => this.renderItem(item))}
