@@ -30,15 +30,58 @@ export default class File extends Component {
     // Document all properties
   }
   render () {
-          //{ this.props.file.isFetching === true
-            //? <div>Loading...</div>
-            //: <ContentEditor 
-                  //sha={this.props.file.sha} 
-                  //path={this.props.file.path} 
-                  //content={this.props.file.content} 
-                  //updateFile={this.props.updateFile} /> }
-    return (
-          <CodeEditor content={this.props.file.content} />
-    )
+    switch (this.props.location.pathname.split('.')[1]) {
+      case "html" :
+        return  <CodeEditor  
+                    mode="htmlmixed"
+                    sha={this.props.file.sha} 
+                    path={this.props.file.path} 
+                    content={this.props.file.content} 
+                    updateFile={this.props.updateFile} /> 
+      case "js" :
+        return  <CodeEditor  
+                    mode="javascript"
+                    sha={this.props.file.sha} 
+                    path={this.props.file.path} 
+                    content={this.props.file.content} 
+                    updateFile={this.props.updateFile} /> 
+      case "yml" || "yaml":
+        return  <CodeEditor  
+                    mode="yaml"
+                    sha={this.props.file.sha} 
+                    path={this.props.file.path} 
+                    content={this.props.file.content} 
+                    updateFile={this.props.updateFile} /> 
+      case "xml":
+        return  <CodeEditor  
+                    mode="xml"
+                    sha={this.props.file.sha} 
+                    path={this.props.file.path} 
+                    content={this.props.file.content} 
+                    updateFile={this.props.updateFile} /> 
+               
+      case "scss" || "sass" :
+        return  <CodeEditor  
+                    mode="sass"
+                    sha={this.props.file.sha} 
+                    path={this.props.file.path} 
+                    content={this.props.file.content} 
+                    updateFile={this.props.updateFile} /> 
+      case "md" :
+        return  <CodeEditor  
+                    mode="markdown"
+                    sha={this.props.file.sha} 
+                    path={this.props.file.path} 
+                    content={this.props.file.content} 
+                    updateFile={this.props.updateFile} /> 
+               
+      default :
+        return  <ContentEditor 
+                    sha={this.props.file.sha} 
+                    path={this.props.file.path} 
+                    content={this.props.file.content} 
+                    updateFile={this.props.updateFile} /> 
+               
+    }
   }
 }

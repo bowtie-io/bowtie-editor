@@ -10,7 +10,13 @@
 import React, { PropTypes, Component } from 'react'
 import CodeMirror from 'react-codemirror'
 import "./CodeEditor.sass"
+// Import all of the codemirror libraries
 require('codemirror/mode/javascript/javascript');
+require('codemirror/mode/sass/sass');
+require('codemirror/mode/htmlmixed/htmlmixed');
+require('codemirror/mode/yaml/yaml');
+require('codemirror/mode/markdown/markdown');
+require('codemirror/mode/xml/xml');
 require('codemirror/keymap/vim');
 require('codemirror/addon/selection/mark-selection');
 
@@ -26,17 +32,15 @@ export default class CodeEditor extends Component {
     // Document all properties
   }
   render () {
-    console.log("hy")
-    console.log(this.props.content)
     return (
       <div className="codeEditor">
-          : <CodeMirror value={this.props.content} onChange={this.updateCode} options={{
-            mode: 'javascript', 
+          <CodeMirror value={this.props.content} onChange={this.updateCode} options={{
+            mode: this.props.mode || "html", 
             lineNumbers: true, 
             theme: 'railscasts', 
             keyMap: "vim",
             styleSelectedText: true
-          }} />}
+          }} />
       </div>
     )
   }
