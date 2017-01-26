@@ -19,6 +19,9 @@ const webpackConfig = {
     root       : project.paths.client(),
     extensions : ['', '.js', '.jsx', '.json']
   },
+  externals: {
+    fs: "fs"
+  },
   module : {}
 }
 // ------------------------------------
