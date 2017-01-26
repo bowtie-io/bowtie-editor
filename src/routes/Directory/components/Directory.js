@@ -34,14 +34,13 @@ export default class Directory extends Component {
   render () {
     return (
       <div className="">
+      {sanitizeLastDir(this.props.location.pathname)} Directory
+      <br />
+      <hr />
         {this.props.directory.isFetching === true
           ? <div>Loading...</div>
           : <FileBrowser 
                 files={this.props.directory}/> }
-      {sanitizeLastDir(this.props.location.pathname)} Directory
-      <br />
-      <button onClick={() => this.props.fetchDirectory} className="btn btn-primary">FETCH</button>
-      <hr />
       </div>
     )
   }
