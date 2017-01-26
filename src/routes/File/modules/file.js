@@ -13,9 +13,17 @@ const initialState = {
   sha: "",
   commitMessage: ""
 }
-const REQUEST_FILE= 'REQUEST_FILE'
+const REQUEST_FILE = 'REQUEST_FILE'
 const RECEIVE_FILE = 'RECEIVE_FILE'
-const FAIL_FILE = 'FAIL_FILE'
+const FAIL_FILE    = 'FAIL_FILE'
+const DECODE_FILE = 'DECODE_FILE'
+
+export function decodeFile(data) {
+  return {
+    type: 'DECODE_FILE',
+    content: data, 
+    }
+}
 
 
 
@@ -24,10 +32,11 @@ export function requestFile() {
     type: 'REQUEST_FILE',
     }
 }
-export function receiveFile(data) {
+export function receiveFile(sha, path) {
   return {
     type: 'RECEIVE_FILE',
-    content: data
+    sha: sha,
+    path: path
     }
 }
 export function failFile(data) {
@@ -50,10 +59,13 @@ export function fetchFile(fileName) {
           return null
         }
         })
-      .then((file) => file.content)
-      .then((b64) => Buffer.from(b64, 'base64').toString('ascii'))
-      .then((content) => dispatch(receiveFile(content)))
-      .catch((err) => console.error(err))
+        .then((file)                    => {
+            dispatch(receiveFile(file.sha, file.path))
+            return file
+        })
+      .then((file)                      => Buffer.from(file.content, 'base64').toString('ascii') )
+      .then((content)                   => dispatch(decodeFile(content)) )
+      .catch((err)                      => console.error(err) )
   }
 }
 
@@ -67,6 +79,12 @@ export default function file (state = initialState, action) {
     isFetching: true
   }
   case RECEIVE_FILE :
+    return {
+    ...state,
+    sha: action.sha,
+    path: action.path
+  }
+  case DECODE_FILE :
     return {
     ...state,
     isFetching: false,
