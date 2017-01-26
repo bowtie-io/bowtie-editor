@@ -29,7 +29,9 @@ export default class Directory extends Component {
     // Document all properties
   }
   componentDidMount() {
-    this.props.fetchDirectory(sanitizeDirRoute(this.props.location.pathname))
+    if (this.props.directory.tree.length == 0 || this.props.directory.path == sanitizeDirRoute(this.props.location.pathname)) {
+      this.props.fetchDirectory(sanitizeDirRoute(this.props.location.pathname))
+    }
   }
   render () {
     return (

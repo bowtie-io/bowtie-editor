@@ -12,7 +12,9 @@ export default class Project extends Component {
     }
   }
   componentWillMount() {
-    this.props.fetchProject()
+    if (this.props.project.tree.length == 0 ) {
+      this.props.fetchProject()
+    }
   }
   render () {
     return (
