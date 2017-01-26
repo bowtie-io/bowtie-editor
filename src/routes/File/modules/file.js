@@ -7,7 +7,11 @@
  * @flow
  ********************************************************/
 const initialState = {
-
+  isFetching: true,
+  content: "",
+  path: "",
+  sha: "",
+  commitMessage: ""
 }
 const REQUEST_FILE= 'REQUEST_FILE'
 const RECEIVE_FILE = 'RECEIVE_FILE'
