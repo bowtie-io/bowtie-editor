@@ -41,9 +41,6 @@ export default class Project extends Component {
   render () {
     return (
       <div className="project">
-        <button onClick={() => this.props.fetchProject()}>
-          Fetch
-        </button>
         {this.props.project.isFetching === true
           ? <div>Loading...</div>
           : null }

@@ -20,6 +20,7 @@ import React, { PropTypes, Component } from 'react'
 import { EditorState, ContentState, convertFromText, ContentBlock } from 'draft-js'
 import { Editor } from 'react-draft-wysiwyg'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import './ContentEditor.sass'
 
 export default class ContentEditor extends Component {
   constructor(props) {
