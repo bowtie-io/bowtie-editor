@@ -6,15 +6,11 @@ export const Header = () => (
   <div className="sidebar">
     <h1>Bowtie.io</h1>
     <IndexLink to='/' activeClassName='route--active'>
-      Projects
+      All Projects
     </IndexLink>
     <hr />
     <Link to='/project' activeClassName='route--active'>
     Project
-    </Link>
-    <hr />
-    <Link to='/editor' activeClassName='route--active'>
-    Editor
     </Link>
   </div>
 )

@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import { Link } from 'react-router'
+import { FileBrowser } from '~/components'
 
 export default class Project extends Component {
   constructor(props) {
@@ -13,40 +14,13 @@ export default class Project extends Component {
   componentWillMount() {
     this.props.fetchProject()
   }
-  renderFileItem = (item, index) => {
-      return (
-        <div>
-        <Link to={{pathname: `/project/file/${item.name}`}}>
-          {item.name} - FILE
-          </Link>
-        </div>
-      )
-  }
-  renderDirItem = (item, index) => {
-      return (
-        <div>
-          <Link to={{pathname: `/project/${item.name}`}}>
-             {item.name} - DIR
-           </Link>
-         </div> 
-      )
-  }
-  renderItem = (item, index) => {
-    if (item.type === "file") {
-      return this.renderFileItem(item)
-    } else {
-      return this.renderDirItem(item)
-    }
-  }
   render () {
     return (
       <div className="project">
         {this.props.project.isFetching === true
           ? <div>Loading...</div>
-          : null }
-
-          {this.props.project.tree.map((item) => this.renderItem(item))}
-          {this.props.children}
+          : <FileBrowser 
+                files={this.props.project}/> }
       </div>
     )
   }
