@@ -2,7 +2,6 @@
 import CoreLayout from '../layouts/CoreLayout'
 import Home from './Home'
 import ProjectRoute from './Project'
-import DirectoryRoute from './Directory'
 import FileManagerRoute from './FileManager'
 
 export const createRoutes = (store) => ({
@@ -11,7 +10,6 @@ export const createRoutes = (store) => ({
   indexRoute  : Home,
   childRoutes : [
     ProjectRoute(store),
-    DirectoryRoute(store),
     FileManagerRoute(store),
   ]
 })

@@ -41,3 +41,9 @@ export const removeLeadingSlash = (path) => {
   }
 }
 
+export const removeTrailingSlash = (path) => {
+  if (path.slice(-1) == '/') {
+    path.substr(0, string.length-1)
+  }
+}
+
