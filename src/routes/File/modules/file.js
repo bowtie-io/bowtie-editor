@@ -6,6 +6,9 @@
  *
  * @flow
  ********************************************************/
+import { API_ROOT, TOKEN } from '~/config/api'
+import { PROJECT } from '~/db/schema'
+
 const initialState = {
   isFetching: true,
   content: "",
@@ -57,10 +60,10 @@ export function fileFail(data) {
     }
 }
 
-export function fetchFile(fileName) {
+export function fetchFile(path) {
   return dispatch => { // return redux-thunk
     dispatch(requestFile()) // set state to fetching
-    return fetch(`https://api.github.com/repos/igolden/igolden.github.io/contents/${fileName}`, {
+    return fetch(`${API_ROOT}/${PROJECT.full_name}/contents/${path}`, {
       method: "GET",
       })
       .then((response) => {
@@ -70,17 +73,17 @@ export function fetchFile(fileName) {
           return null
         }
         })
-        .then((file)                                   => {
-            dispatch(receiveFile(file.sha, file.path))
-            return file
+        .then((file) => {
+          dispatch(receiveFile(file.sha, file.path))
+          return file
         })
-      .then((file)                                     => Buffer.from(file.content, 'base64').toString('ascii') )
-      .then((content)                                  => {
+        .then((file)  => Buffer.from(file.content, 'base64').toString('ascii') )
+        .then((content) => {
           dispatch(decodeFile(content))
           return content
-      })
-      .then(()                                         => dispatch(loadFile()))
-      .catch((err)                                     => console.error(err))
+        })
+      .then(() => dispatch(loadFile()))
+      .catch((err) => console.error(err))
   }
 }
 
@@ -110,31 +113,31 @@ export function receiveUpdatedFile(sha, path) {
 export function updateFile(content, sha, path, message) {
   return dispatch => { // return redux-thunk
     dispatch(postFile()) // set state to fetching
-    return fetch(`https://api.github.com/repos/igolden/igolden.github.io/contents/${path}`, {
+    return fetch(`${API_ROOT}/${PROJECT.full_name}/contents/${path}`, {
       method            : "PUT",
       headers           : {
         "Content-Type"  : "application/json",
-        "Authorization" : "token f2d64d14d1b70994ed6a555140c6b6e9101c616c"
+        "Authorization" : `token ${TOKEN}`
       },
       body: JSON.stringify({
         "message": "RCTCommit",
         "committer": {
-          "name": "Ian Golden",
-          "email": "ian@iangolden.com"
+          "name" : `${PROJECT.current_user.name}`,
+          "email": `${PROJECT.current_user.email}`
         },
         "content": new Buffer(content).toString('base64'),
         "sha": sha
       })
     })
-      .then((response) => {
-        if (response.ok) {
-          return response.json()
-        } else {
-          return null
-        }
-        })
-      .then((data) => dispatch(receiveUpdatedFile(data)))
-      .catch((err) => console.error(err))
+    .then((response) => {
+      if (response.ok) {
+        return response.json()
+      } else {
+        return null
+      }
+    })
+    .then((data) => dispatch(receiveUpdatedFile(data)))
+    .then((data) => dispatch(fetchFile(`${path}`)))
   }
 }
 
@@ -173,7 +176,6 @@ export default function file (state = initialState, action) {
   case RECEIVE_UPDATED_FILE :
     return {
     ...state,
-    isFetching: false,
     sha: action.sha,
     path: action.path
   }

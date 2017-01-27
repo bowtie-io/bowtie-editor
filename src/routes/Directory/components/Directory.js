@@ -23,6 +23,7 @@ export default class Directory extends Component {
     this.state = {
       // set initialState
       // local Class state only
+      currentDir: ""
     }
   }
   static propTypes = {
@@ -40,7 +41,7 @@ export default class Directory extends Component {
         {this.props.directory.isFetching === true
           ? <div>Loading...</div>
           : <FileBrowser 
-                files={this.props.directory}/> }
+                files={this.props.directory} currentDir={sanitizeDirRoute(window.location.pathname)} /> }
       </div>
     )
   }
