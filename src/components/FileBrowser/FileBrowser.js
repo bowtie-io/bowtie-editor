@@ -22,7 +22,7 @@ export default class FileBrowser extends Component {
   renderFileItem = (item, index) => {
       return (
         <div>
-        <Link to={{pathname: `/project/file/${item.name}`}}>
+        <Link to={{pathname: `${item.name}`}}>
           {item.name} - FILE
           </Link>
         </div>
@@ -31,7 +31,7 @@ export default class FileBrowser extends Component {
   renderDirItem = (item, index) => {
       return (
         <div>
-          <Link to={{pathname: `/project/dir/${item.name}`}}>
+          <Link to={{pathname: `${item.name}`}}>
              {item.name} - DIR
            </Link>
          </div> 
