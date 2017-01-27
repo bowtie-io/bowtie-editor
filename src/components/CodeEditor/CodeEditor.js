@@ -24,7 +24,7 @@ export default class CodeEditor extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      code: "Loading..."
+      code: ""
     }
   }
   static propTypes = {

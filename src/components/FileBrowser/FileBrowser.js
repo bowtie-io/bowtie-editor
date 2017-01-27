@@ -22,7 +22,7 @@ export default class FileBrowser extends Component {
   }
   renderFileItem = (item, index) => {
       return (
-        <div>
+        <div key={index}>
         <Link to={{pathname: `${window.location.pathname}/${item.name}`}}>
           {item.name} - FILE
           </Link>
@@ -31,25 +31,25 @@ export default class FileBrowser extends Component {
   }
   renderDirItem = (item, index) => {
       return (
-        <div>
+        <div key={index}>
           <Link to={{pathname: `${window.location.pathname}/${item.name}`}}>
              {item.name} - DIR
            </Link>
          </div> 
       )
   }
-  renderItem = (item, index) => {
+  renderItem = (item, i) => {
     if (item.type === "file") {
-      return this.renderFileItem(item)
+      return this.renderFileItem(item, i)
     } else {
-      return this.renderDirItem(item)
+      return this.renderDirItem(item, i)
     }
   }
 
   render () {
     return (
       <div className="container">
-        {this.props.files.map((item) => this.renderItem(item))}
+        {this.props.files.map((item, i) => this.renderItem(item, i))}
       </div>
     )
   }

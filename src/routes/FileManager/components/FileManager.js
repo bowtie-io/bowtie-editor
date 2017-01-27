@@ -46,7 +46,7 @@ export default class FileManager extends Component {
           </div>
         )
       } else {
-        if (this.props.file.content.length > 0) {
+        if (this.props.file.sha) {
           switch (this.props.location.pathname.split('.')[1]) {
             case "html" :
               return  <CodeEditor  

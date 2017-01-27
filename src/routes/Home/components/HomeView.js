@@ -13,13 +13,13 @@ export default class HomeView extends Component {
   static propTypes = {
     // Document all properties
   }
-  renderProjectCard = (project) => {
+  renderProjectCard = (project, i) => {
     return (
       <div className="col">
         <div className="card card-block">
           <img src="https://placehold.it/640x480" />
           <p>
-            <Link to={{pathname: `project/${project.id}`}}>
+            <Link to={{pathname: `project/${project.id}`}} key={i}>
               {project.name}
             </Link>
           </p>
@@ -30,7 +30,7 @@ export default class HomeView extends Component {
   render () {
     return (
       <div className="row">
-      { PROJECTS.map((project) => this.renderProjectCard(project)) }
+      { PROJECTS.map((project, i) => this.renderProjectCard(project, i)) }
       </div>
     )
   }
