@@ -40,6 +40,7 @@ export default class CodeEditor extends Component {
   render () {
     return (
       <div className="codeEditor">
+      <button className="editor-button" onClick={ () => this.props.updateFile(this.state.code, this.props.sha, this.props.path, this.props.commitMessage)  }>Update</button>
           <CodeMirror value={this.state.code} 
             onChange={this.updateCode} 
             options={{
