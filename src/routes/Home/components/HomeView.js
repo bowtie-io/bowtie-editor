@@ -19,7 +19,7 @@ export default class HomeView extends Component {
         <div className="card card-block">
           <img src="https://placehold.it/640x480" />
           <p>
-            <Link to={{pathname: `project/${project.id}`}}>
+            <Link to={{pathname: `project/${project.id}/`}}>
               {project.name}
             </Link>
           </p>

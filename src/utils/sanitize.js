@@ -22,7 +22,7 @@ export const sanitize = () => {
   let base = '/project/'
   return null
 }
-export function forceTrailingSlash(nextState, replace) {
+export const forceTrailingSlash = (nextState, replace) => {
   const path = nextState.location.pathname;
   if (path.slice(-1) !== '/') {
     replace({
@@ -31,7 +31,13 @@ export function forceTrailingSlash(nextState, replace) {
     });
   }
 }
-export function forceTrailingSlashOnChange(prevState, nextState, replace) {
+export const forceTrailingSlashOnChange = (prevState, nextState, replace) => {
   forceTrailingSlash(nextState, replace);
+}
+
+export const removeLeadingSlash = (path) => {
+  if (path.split('')[0] == '/') {
+    path.slice(1)
+  }
 }
 
