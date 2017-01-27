@@ -12,6 +12,7 @@ import React, { PropTypes, Component } from 'react'
 import { ContentEditor } from '~/components'
 import { sanitizeDirRoute } from '~/utils/sanitize'
 import { CodeEditor } from '~/components'
+import { sanitize } from '~/utils/sanitize'
 
 export default class File extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ export default class File extends Component {
     }
   }
   componentDidMount() {
-    this.props.fetchPath(this.props.params.fileName)
+    this.props.fetchPath(this.props.params.splat)
   }
     
   render () {

@@ -18,3 +18,8 @@ export const sanitizeLastDir = (path) => {
   return currentDir
 }
 
+export const sanitize = () => {
+  let base = '/project/'
+  return null
+}
+
