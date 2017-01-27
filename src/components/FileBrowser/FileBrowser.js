@@ -23,7 +23,7 @@ export default class FileBrowser extends Component {
   renderFileItem = (item, index) => {
       return (
         <div>
-        <Link to={{pathname: `${window.location.pathname}/${removeLeadingSlash(item.name)}`}}>
+        <Link to={{pathname: `${window.location.pathname}/${item.name}`}}>
           {item.name} - FILE
           </Link>
         </div>

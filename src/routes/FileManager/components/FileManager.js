@@ -1,5 +1,5 @@
 /********************************************************
- * File.js 
+ * FileManager.js 
  *
  * Responsible for serving the Editor necessary props
  * and connecting the editor to the selected doc's
@@ -14,7 +14,7 @@ import { sanitizeDirRoute } from '~/utils/sanitize'
 import { CodeEditor } from '~/components'
 import { sanitize } from '~/utils/sanitize'
 
-export default class File extends Component {
+export default class FileManager extends Component {
   constructor(props) {
     super(props)
     this.state = {

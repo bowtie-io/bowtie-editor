@@ -5,11 +5,11 @@ export default (store) => ({
 
   getComponent (nextState, cb) {
     require.ensure([], (require) => {
-      const File = require('./containers/FileContainer').default
+      const FileManager = require('./containers/FileManagerContainer').default
       const reducer = require('./modules/file').default
-      injectReducer(store, { key: 'file', reducer })
-      cb(null, File)
-    }, 'file')
+      injectReducer(store, { key: 'filemanager', reducer })
+      cb(null, FileManager)
+    }, 'filemanager')
   }
 })
 

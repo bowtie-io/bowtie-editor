@@ -3,7 +3,7 @@ import CoreLayout from '../layouts/CoreLayout'
 import Home from './Home'
 import ProjectRoute from './Project'
 import DirectoryRoute from './Directory'
-import FileRoute from './File'
+import FileManagerRoute from './FileManager'
 
 export const createRoutes = (store) => ({
   path        : '/',
@@ -12,7 +12,7 @@ export const createRoutes = (store) => ({
   childRoutes : [
     ProjectRoute(store),
     DirectoryRoute(store),
-    FileRoute(store),
+    FileManagerRoute(store),
   ]
 })
 

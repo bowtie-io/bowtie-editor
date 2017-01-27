@@ -1,14 +1,17 @@
 /********************************************************
- * FileContainer 
+ * FileManagerContainer 
  *
- * Responsible for fetching the content of a single file.
+ * Responsible for fetching the current path, relative
+ * to the git repository. It controls the logic on whether
+ * to render the FileBrowser or Editor based on the 
+ * response.
  *
  * @flow
  ********************************************************/
 
 import { connect } from 'react-redux'                   // import connect
 import { fetchPath, updateFile } from '../modules/file' // import action creators
-import File from '../components/File'                   // import component to connect
+import FileManager from '../components/FileManager'                   // import component to connect
 
 function mapStateToProps ({file}, {...props}) {
   return {
@@ -25,4 +28,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(File)
+)(FileManager)
