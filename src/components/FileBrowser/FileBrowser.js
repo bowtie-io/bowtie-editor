@@ -10,7 +10,7 @@
 
 import React, { PropTypes, Component } from 'react'
 import { Link } from 'react-router'
-import { removeLeadingSlash } from '~/utils/sanitize'
+import { removeTrailingSlash } from '~/utils/sanitize'
 
 export default class FileBrowser extends Component {
   constructor(props) {
@@ -21,10 +21,11 @@ export default class FileBrowser extends Component {
   static propTypes = {
   }
   renderFileItem = (item, index) => {
+    console.log(removeTrailingSlash(window.location.pathname))
       return (
         <div key={index}>
-        <Link to={{pathname: `${window.location.pathname}/${item.name}`}}>
-          {item.name} - FILE
+          <Link to={{pathname: `${removeTrailingSlash(window.location.pathname)}/${item.name}`}}>
+            {item.name} - FILE
           </Link>
         </div>
       )
@@ -32,7 +33,7 @@ export default class FileBrowser extends Component {
   renderDirItem = (item, index) => {
       return (
         <div key={index}>
-          <Link to={{pathname: `${window.location.pathname}/${item.name}`}}>
+            <Link to={{pathname: `${removeTrailingSlash(window.location.pathname)}/${item.name}`}}>
              {item.name} - DIR
            </Link>
          </div> 
