@@ -9,7 +9,6 @@ export default class Project extends Component {
     this.state = {
       files : [],
       dirs  : [],
-      code: "// Code",
     }
   }
   componentWillMount() {

@@ -24,11 +24,16 @@ export default class CodeEditor extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      code: this.props.content
+      code: "Loading..."
     }
   }
   static propTypes = {
     // Document all properties
+  }
+  componentDidMount() {
+    this.state = {
+      code: this.props.content
+    }
   }
   updateCode = (newCode) => {
     console.log(newCode)

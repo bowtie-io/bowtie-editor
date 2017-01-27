@@ -23,6 +23,13 @@ const REQUEST_FILE = 'REQUEST_FILE'
 const RECEIVE_FILE = 'RECEIVE_FILE'
 const FILE_FAIL    = 'FILE_FAIL'
 const DECODE_FILE  = 'DECODE_FILE'
+const LOAD_FILE = 'LOAD_FILE'
+
+export function loadFile() {
+  return {
+    type: 'LOAD_FILE',
+    }
+}
 
 export function decodeFile(data) {
   return {
@@ -63,13 +70,17 @@ export function fetchFile(fileName) {
           return null
         }
         })
-        .then((file)                    => {
+        .then((file)                                   => {
             dispatch(receiveFile(file.sha, file.path))
             return file
         })
-      .then((file)                      => Buffer.from(file.content, 'base64').toString('ascii') )
-      .then((content)                   => dispatch(decodeFile(content)) )
-      .catch((err)                      => console.error(err) )
+      .then((file)                                     => Buffer.from(file.content, 'base64').toString('ascii') )
+      .then((content)                                  => {
+          dispatch(decodeFile(content))
+          return content
+      })
+      .then(()                                         => dispatch(loadFile()))
+      .catch((err)                                     => console.error(err))
   }
 }
 
@@ -134,6 +145,7 @@ export default function file (state = initialState, action) {
   case REQUEST_FILE :
     return {
     ...state,
+    content: "",
     isFetching: true
   }
   case RECEIVE_FILE :
@@ -145,7 +157,6 @@ export default function file (state = initialState, action) {
   case DECODE_FILE :
     return {
     ...state,
-    isFetching: false,
     content: action.content
   }
   case FILE_FAIL :
@@ -165,6 +176,11 @@ export default function file (state = initialState, action) {
     isFetching: false,
     sha: action.sha,
     path: action.path
+  }
+  case LOAD_FILE :
+    return {
+    ...state,
+    isFetching: false,
   }
     default :
       return state
