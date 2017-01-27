@@ -36,7 +36,6 @@ export function requestPath() {
 }
 export function receivePath(pathResponse) {
   let type = Object.prototype.toString.call(pathResponse)
-  console.log(type)
   if ( type == '[object Array]') {
     return {
       type: 'RECEIVE_PATH',
@@ -100,16 +99,13 @@ export function fetchPath(path) {
           data: buffer
         }
         return data
-        console.log("buffer")
       } else {
-        console.log("data")
       return data
       }
     })
     .then((data) => {
       let decodedData = data
       if (decodedData.file === true) {
-        console.log(decodedData)
         dispatch(decodePath(decodedData.data))
       }
     })

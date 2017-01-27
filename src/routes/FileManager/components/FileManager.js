@@ -34,7 +34,6 @@ export default class FileManager extends Component {
     if (this.props.file.isFetching == true) {
       return <div>Loading</div>
     } else {
-      console.log("LOADING === FALSE", this.props.file)
 
       if (this.props.file.directory === true) {
         return (
@@ -113,7 +112,6 @@ export default class FileManager extends Component {
             updateFile={this.props.updateFile} /> 
           }       
         } else {
-          console.log(this.props.file)
             return <div>Loading</div>
         }
       }

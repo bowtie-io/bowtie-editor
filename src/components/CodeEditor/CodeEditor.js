@@ -36,7 +36,6 @@ export default class CodeEditor extends Component {
     })
   }
   updateCode = (newCode) => {
-    console.log(newCode)
     this.setState({
       code: newCode
     }) 
