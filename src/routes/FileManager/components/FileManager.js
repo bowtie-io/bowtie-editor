@@ -31,8 +31,18 @@ export default class FileManager extends Component {
   }
 
   render () {
-    if (this.props.file.isFetching == true) {
+    if (this.props.file.isFetching === true) {
       return <div>Loading</div>
+    } else if (this.props.file.fail === true) {
+      /********************************************************
+       * VERY basic 404 handling. This should eventually get
+       * replaced with a 
+       ********************************************************/
+      return (
+      <div>
+        {this.props.file.error.name}
+      </div>
+      )    
     } else {
 
       if (this.props.file.directory === true) {
@@ -111,8 +121,6 @@ export default class FileManager extends Component {
             content={this.props.file.content} 
             updateFile={this.props.updateFile} /> 
           }       
-        } else {
-            return <div>Loading</div>
         }
       }
     }

@@ -86,6 +86,18 @@ export function fetchPath(path) {
         return null
       }
     })
+    /********************************************************
+On branch refactor/more-intuitive-routes-and-file-browsing
+Changes not staged for commit:
+	modified:   src/routes/FileManager/components/FileManager.js
+	modified:   src/routes/FileManager/modules/file.js
+
+no changes added to commit
+     *    } else {
+           * return response
+     *    }
+     * } )
+     ********************************************************/
     .then((path) => {
       dispatch(receivePath(path))
       return path
@@ -110,7 +122,12 @@ export function fetchPath(path) {
       }
     })
     .then(()   => dispatch(loadPath()))
-    .catch((err) => console.error(err))
+    .catch((err) => {
+      console.log("============================================")
+      console.log(err);
+      console.log("============================================")
+      dispatch(pathFail(err))
+    })
   }
 }
 
@@ -195,7 +212,8 @@ export default function file (state = initialState, action) {
     return {
     ...state,
     isFetching: false,
-    fileError: action.error
+    fail: true,
+    error: action.error
   }
   case POST_FILE :
     return {
