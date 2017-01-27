@@ -42,23 +42,54 @@
 
 
 
-export const projects = [
+export const PROJECTS = [
   {
-    id: "",
-    name: "",
-    project_url: "",
-    project_settings: {
-        domain: {},
-        hosting: {},
-        stripe: {},
-    },
-    github_access_token: "f2d64d14d1b70994ed6a555140c6b6e9101c616c",
-    current_user: "",
+  id: "1",
+  name: "igolden.github.io",
+  full_name: "igolden/igolden.github.io",
+  project_settings: {
+    domain: {},
+    hosting: {},
+    stripe: {},
   },
-  // continue
-  {},
-  {},
+  github_access_token: "f2d64d14d1b70994ed6a555140c6b6e9101c616c",
+  current_user: {
+    name: "Ian Golden",
+    email: "ian@iangolden.com"
+  }
+},
+  {
+  id: "2",
+  name: "igolden.github.io",
+  full_name: "igolden/igolden.github.io",
+  project_settings: {
+    domain: {},
+    hosting: {},
+    stripe: {},
+  },
+  github_access_token: "f2d64d14d1b70994ed6a555140c6b6e9101c616c",
+  current_user: {
+    name: "Ian Golden",
+    email: "ian@iangolden.com"
+  }
+},
+  {
+  id: "3",
+  name: "igolden.github.io",
+  full_name: "igolden/igolden.github.io",
+  project_settings: {
+    domain: {},
+    hosting: {},
+    stripe: {},
+  },
+  github_access_token: "f2d64d14d1b70994ed6a555140c6b6e9101c616c",
+  current_user: {
+    name: "Ian Golden",
+    email: "ian@iangolden.com"
+  }
+},
 ]
+
 
 export const PROJECT = {
   id: "1",
