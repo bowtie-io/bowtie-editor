@@ -24,23 +24,33 @@ export default class CodeEditor extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      // set initialState
-      // local Class state only
+      code: this.props.content
     }
   }
   static propTypes = {
     // Document all properties
   }
+  updateCode = (newCode) => {
+    console.log(newCode)
+    this.setState({
+      code: newCode
+    }) 
+    
+  }
   render () {
     return (
       <div className="codeEditor">
-          <CodeMirror value={this.props.content} onChange={this.updateCode} options={{
-            mode: this.props.mode || "html", 
-            lineNumbers: true, 
-            theme: 'railscasts', 
-            keyMap: "vim",
-            styleSelectedText: true
-          }} />
+      <button className="editor-button" onClick={ () => this.props.updateFile(this.state.code, this.props.sha, this.props.path, this.props.commitMessage)  }>Update</button>
+          <CodeMirror value={this.state.code} 
+            onChange={this.updateCode} 
+            options={{
+              mode: this.props.mode || "html", 
+              lineNumbers: true, 
+              theme: 'railscasts', 
+              keyMap: "vim",
+              styleSelectedText: true
+            }}
+          />
       </div>
     )
   }
