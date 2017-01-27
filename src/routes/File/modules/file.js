@@ -22,47 +22,47 @@ const initialState = {
 //	populate our data.
 //////////////////////////////////////////
 
-const REQUEST_FILE = 'REQUEST_FILE'
-const RECEIVE_FILE = 'RECEIVE_FILE'
-const FILE_FAIL    = 'FILE_FAIL'
-const DECODE_FILE  = 'DECODE_FILE'
-const LOAD_FILE = 'LOAD_FILE'
+const REQUEST_PATH = 'REQUEST_PATH'
+const RECEIVE_PATH = 'RECEIVE_PATH'
+const PATH_FAIL    = 'PATH_FAIL'
+const DECODE_PATH  = 'DECODE_PATH'
+const LOAD_PATH = 'LOAD_PATH'
 
-export function loadFile() {
+export function loadPath() {
   return {
-    type: 'LOAD_FILE',
+    type: 'LOAD_PATH',
     }
 }
 
-export function decodeFile(data) {
+export function decodePath(data) {
   return {
-    type: 'DECODE_FILE',
+    type: 'DECODE_PATH',
     content: data, 
     }
 }
 
-export function requestFile() {
+export function requestPath() {
   return {
-    type: 'REQUEST_FILE',
+    type: 'REQUEST_PATH',
     }
 }
-export function receiveFile(sha, path) {
+export function receivePath(sha, path) {
   return {
-    type: 'RECEIVE_FILE',
+    type: 'RECEIVE_PATH',
     sha: sha,
     path: path
     }
 }
-export function fileFail(data) {
+export function pathFail(data) {
   return {
-    type: 'FILE_FAIL',
+    type: 'PATH_FAIL',
     error: data
     }
 }
 
-export function fetchFile(path) {
+export function fetchPath(path) {
   return dispatch => { // return redux-thunk
-    dispatch(requestFile()) // set state to fetching
+    dispatch(requestPath()) // set state to fetching
     return fetch(`${API_ROOT}/${PROJECT.full_name}/contents/${path}`, {
       method: "GET",
       })
@@ -74,15 +74,15 @@ export function fetchFile(path) {
         }
         })
         .then((file) => {
-          dispatch(receiveFile(file.sha, file.path))
+          dispatch(receivePath(file.sha, file.path))
           return file
         })
         .then((file)  => Buffer.from(file.content, 'base64').toString('ascii') )
         .then((content) => {
-          dispatch(decodeFile(content))
+          dispatch(decodePath(content))
           return content
         })
-      .then(() => dispatch(loadFile()))
+      .then(() => dispatch(loadPath()))
       .catch((err) => console.error(err))
   }
 }
@@ -145,24 +145,24 @@ export function updateFile(content, sha, path, message) {
 
 export default function file (state = initialState, action) {
   switch (action.type) {
-  case REQUEST_FILE :
+  case REQUEST_PATH :
     return {
     ...state,
     content: "",
     isFetching: true
   }
-  case RECEIVE_FILE :
+  case RECEIVE_PATH :
     return {
     ...state,
     sha: action.sha,
     path: action.path
   }
-  case DECODE_FILE :
+  case DECODE_PATH :
     return {
     ...state,
     content: action.content
   }
-  case FILE_FAIL :
+  case PATH_FAIL :
     return {
     ...state,
     isFetching: false,
@@ -179,7 +179,7 @@ export default function file (state = initialState, action) {
     sha: action.sha,
     path: action.path
   }
-  case LOAD_FILE :
+  case LOAD_PATH :
     return {
     ...state,
     isFetching: false,

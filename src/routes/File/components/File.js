@@ -21,7 +21,7 @@ export default class File extends Component {
     }
   }
   componentDidMount() {
-    this.props.fetchFile(this.props.params.fileName)
+    this.props.fetchPath(this.props.params.fileName)
   }
     
   render () {
@@ -36,7 +36,7 @@ export default class File extends Component {
                     path={this.props.file.path} 
                     content={this.props.file.content} 
                     isFetching={this.props.file.isFetching}
-                    fetchFile={(path) => this.props.fetchFile(path)}
+                    fetchPath={(path) => this.props.fetchPath(path)}
                     updateFile={this.props.updateFile} /> 
       case "js" :
         return  <CodeEditor  
@@ -45,7 +45,7 @@ export default class File extends Component {
                     path={this.props.file.path} 
                     content={this.props.file.content} 
                     isFetching={this.props.file.isFetching}
-                    fetchFile={(path) => this.props.fetchFile(path)}
+                    fetchPath={(path) => this.props.fetchPath(path)}
                     updateFile={this.props.updateFile} /> 
       case "yml" || "yaml":
         return  <CodeEditor  
@@ -54,7 +54,7 @@ export default class File extends Component {
                     path={this.props.file.path} 
                     content={this.props.file.content} 
                     isFetching={this.props.file.isFetching}
-                    fetchFile={(path) => this.props.fetchFile(path)}
+                    fetchPath={(path) => this.props.fetchPath(path)}
                     updateFile={this.props.updateFile} /> 
       case "xml":
         return  <CodeEditor  
@@ -63,7 +63,7 @@ export default class File extends Component {
                     path={this.props.file.path} 
                     content={this.props.file.content} 
                     isFetching={this.props.file.isFetching}
-                    fetchFile={(path) => this.props.fetchFile(path)}
+                    fetchPath={(path) => this.props.fetchPath(path)}
                     updateFile={this.props.updateFile} /> 
                
       case "scss" || "sass" :
@@ -73,7 +73,7 @@ export default class File extends Component {
                     path={this.props.file.path} 
                     content={this.props.file.content} 
                     isFetching={this.props.file.isFetching}
-                    fetchFile={(path) => this.props.fetchFile(path)}
+                    fetchPath={(path) => this.props.fetchPath(path)}
                     updateFile={this.props.updateFile} /> 
       case "md" :
         return  <CodeEditor  
@@ -82,7 +82,7 @@ export default class File extends Component {
                     path={this.props.file.path} 
                     content={this.props.file.content} 
                     isFetching={this.props.file.isFetching}
-                    fetchFile={(path) => this.props.fetchFile(path)}
+                    fetchPath={(path) => this.props.fetchPath(path)}
                     updateFile={this.props.updateFile} /> 
                
       default :
