@@ -36,6 +36,7 @@ export function requestPath() {
 }
 export function receivePath(pathResponse) {
   let type = Object.prototype.toString.call(pathResponse)
+  console.log(type)
   if ( type == '[object Array]') {
     return {
       type: 'RECEIVE_PATH',
@@ -74,6 +75,10 @@ export function fetchPath(path) {
     dispatch(requestPath()) // set state to fetching
     return fetch(`${API_ROOT}/${PROJECT.full_name}/contents/${path}`, {
       method: "GET",
+      headers: {
+        "Accept"        : 'application/json',
+        "Authorization" : `token ${TOKEN}`
+      }
     })
     .then((response) => {
       if (response.ok) {
@@ -86,9 +91,27 @@ export function fetchPath(path) {
       dispatch(receivePath(path))
       return path
     })
-    .then((data) =>  Buffer.from(data.content, 'base64').toString('ascii'))
-    .then((content)   => {
-      dispatch(decodePath(content))
+    .then((data) =>  {
+      const input = data
+      if (data.content) {
+        let buffer = Buffer.from(input.content, 'base64').toString('ascii')
+        let data = {
+          file: true,
+          data: buffer
+        }
+        return data
+        console.log("buffer")
+      } else {
+        console.log("data")
+      return data
+      }
+    })
+    .then((data) => {
+      let decodedData = data
+      if (decodedData.file === true) {
+        console.log(decodedData)
+        dispatch(decodePath(decodedData.data))
+      }
     })
     .then(()   => dispatch(loadPath()))
     .catch((err) => console.error(err))

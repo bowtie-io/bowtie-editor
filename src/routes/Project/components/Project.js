@@ -12,10 +12,8 @@ export default class Project extends Component {
       dirs  : [],
     }
   }
-  componentWillMount() {
-    if (this.props.project.tree.length == 0 ) {
-      this.props.fetchProject()
-    }
+  componentDidMount() {
+      this.props.fetchProject(this.props.params.splat)
   }
   render () {
     return (
@@ -23,7 +21,7 @@ export default class Project extends Component {
         {this.props.project.isFetching === true
           ? <div>Loading...</div>
           : <FileBrowser 
-                files={this.props.project}/> }
+                files={this.props.project.tree}/> }
       </div>
     )
   }

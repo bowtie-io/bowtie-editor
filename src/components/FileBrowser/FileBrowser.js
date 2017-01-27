@@ -49,7 +49,7 @@ export default class FileBrowser extends Component {
   render () {
     return (
       <div className="container">
-        {this.props.files.tree.map((item) => this.renderItem(item))}
+        {this.props.files.map((item) => this.renderItem(item))}
       </div>
     )
   }

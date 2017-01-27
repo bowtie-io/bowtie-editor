@@ -30,7 +30,7 @@ export default class Directory extends Component {
     // Document all properties
   }
   componentDidMount() {
-      this.props.fetchDirectory(sanitizeDirRoute(this.props.location.pathname))
+      this.props.fetchDirectory(this.props.params.splat)
   }
   render () {
     return (

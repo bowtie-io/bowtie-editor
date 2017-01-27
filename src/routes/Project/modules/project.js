@@ -7,6 +7,8 @@ import 'whatwg-fetch'
  *
  * @flow
  ********************************************************/
+import { API_ROOT, API_VERSION } from '~/config/api'
+import { PROJECT } from '~/db/schema'
 const initialState = {
   isFetching: false,
   tree: [],
@@ -33,10 +35,10 @@ export function failProject(data) {
     error: data
     }
 }
-export function fetchProject() {
+export function fetchProject(path) {
   return dispatch => { // return redux-thunk
     dispatch(requestProject()) // set state to fetching
-    return fetch("https://api.github.com/repos/igolden/igolden.github.io/contents/", {
+    return fetch(`${API_ROOT}/${PROJECT.full_name}/contents`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

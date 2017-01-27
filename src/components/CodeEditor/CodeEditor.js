@@ -31,9 +31,9 @@ export default class CodeEditor extends Component {
     // Document all properties
   }
   componentDidMount() {
-    this.state = {
+    this.setState({
       code: this.props.content
-    }
+    })
   }
   updateCode = (newCode) => {
     console.log(newCode)

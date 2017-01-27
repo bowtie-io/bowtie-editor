@@ -18,91 +18,106 @@ export default class FileManager extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      code: "Loading .."
+      location: this.props.location
     }
   }
   componentDidMount() {
     this.props.fetchPath(this.props.params.splat)
   }
-    
-  render () {
-    if (this.props.file.content !== 0) {
-      return <div>Loading</div>
-    } else if (this.props.directory === true) {
-      return (
-        <div className="">
-        {sanitize(this.props.location.pathname)} Directory
-        <br />
-        <hr />
-          <FileBrowser 
-          files={this.props.file.tree} currentDir={this.props.params.splat} /> }
-          </div>
-      )
-    } else {
-    switch (this.props.location.pathname.split('.')[1]) {
-      case "html" :
-        return  <CodeEditor  
-                    mode="htmlmixed"
-                    sha={this.props.file.sha} 
-                    path={this.props.file.path} 
-                    content={this.props.file.content} 
-                    isFetching={this.props.file.isFetching}
-                    fetchPath={(path) => this.props.fetchPath(path)}
-                    updateFile={this.props.updateFile} /> 
-      case "js" :
-        return  <CodeEditor  
-                    mode="javascript"
-                    sha={this.props.file.sha} 
-                    path={this.props.file.path} 
-                    content={this.props.file.content} 
-                    isFetching={this.props.file.isFetching}
-                    fetchPath={(path) => this.props.fetchPath(path)}
-                    updateFile={this.props.updateFile} /> 
-      case "yml" || "yaml":
-        return  <CodeEditor  
-                    mode="yaml"
-                    sha={this.props.file.sha} 
-                    path={this.props.file.path} 
-                    content={this.props.file.content} 
-                    isFetching={this.props.file.isFetching}
-                    fetchPath={(path) => this.props.fetchPath(path)}
-                    updateFile={this.props.updateFile} /> 
-      case "xml":
-        return  <CodeEditor  
-                    mode="xml"
-                    sha={this.props.file.sha} 
-                    path={this.props.file.path} 
-                    content={this.props.file.content} 
-                    isFetching={this.props.file.isFetching}
-                    fetchPath={(path) => this.props.fetchPath(path)}
-                    updateFile={this.props.updateFile} /> 
-               
-      case "scss" || "sass" :
-        return  <CodeEditor  
-                    mode="sass"
-                    sha={this.props.file.sha} 
-                    path={this.props.file.path} 
-                    content={this.props.file.content} 
-                    isFetching={this.props.file.isFetching}
-                    fetchPath={(path) => this.props.fetchPath(path)}
-                    updateFile={this.props.updateFile} /> 
-      case "md" :
-        return  <CodeEditor  
-                    mode="markdown"
-                    sha={this.props.file.sha} 
-                    path={this.props.file.path} 
-                    content={this.props.file.content} 
-                    isFetching={this.props.file.isFetching}
-                    fetchPath={(path) => this.props.fetchPath(path)}
-                    updateFile={this.props.updateFile} /> 
-               
-      default :
-        return  <ContentEditor 
-                    sha={this.props.file.sha} 
-                    path={this.props.file.path} 
-                    content={this.props.file.content} 
-                    updateFile={this.props.updateFile} /> 
-    }       
+  componentWillReceiveProps(nextProps) {
+    if (this.props.params.splat != nextProps.params.splat) {
+      this.props.fetchPath(nextProps.params.splat)
     }
   }
+
+  render () {
+    if (this.props.file.isFetching == true) {
+      return <div>Loading</div>
+    } else {
+      console.log("LOADING === FALSE", this.props.file)
+
+      if (this.props.file.directory === true) {
+        return (
+          <div className="">
+          {sanitize(this.props.location.pathname)} Directory
+          <br />
+          <hr />
+          <FileBrowser 
+          files={this.props.file.tree} currentDir={this.props.params.splat} /> 
+          </div>
+        )
+      } else {
+        if (this.props.file.content.length > 0) {
+          switch (this.props.location.pathname.split('.')[1]) {
+            case "html" :
+              return  <CodeEditor  
+            mode="htmlmixed"
+            sha={this.props.file.sha} 
+            path={this.props.file.path} 
+            content={this.props.file.content} 
+            isFetching={this.props.file.isFetching}
+            fetchPath={(path) => this.props.fetchPath(path)}
+            updateFile={this.props.updateFile} /> 
+            case "js" :
+              return  <CodeEditor  
+            mode="javascript"
+            sha={this.props.file.sha} 
+            path={this.props.file.path} 
+            content={this.props.file.content} 
+            isFetching={this.props.file.isFetching}
+            fetchPath={(path) => this.props.fetchPath(path)}
+            updateFile={this.props.updateFile} /> 
+            case "yml" || "yaml":
+              return  <CodeEditor  
+            mode="yaml"
+            sha={this.props.file.sha} 
+            path={this.props.file.path} 
+            content={this.props.file.content} 
+            isFetching={this.props.file.isFetching}
+            fetchPath={(path) => this.props.fetchPath(path)}
+            updateFile={this.props.updateFile} /> 
+            case "xml":
+              return  <CodeEditor  
+            mode="xml"
+            sha={this.props.file.sha} 
+            path={this.props.file.path} 
+            content={this.props.file.content} 
+            isFetching={this.props.file.isFetching}
+            fetchPath={(path) => this.props.fetchPath(path)}
+            updateFile={this.props.updateFile} /> 
+
+            case "scss" || "sass" :
+              return  <CodeEditor  
+            mode="sass"
+            sha={this.props.file.sha} 
+            path={this.props.file.path} 
+            content={this.props.file.content} 
+            isFetching={this.props.file.isFetching}
+            fetchPath={(path) => this.props.fetchPath(path)}
+            updateFile={this.props.updateFile} /> 
+            case "md" :
+              return  <CodeEditor  
+            mode="markdown"
+            sha={this.props.file.sha} 
+            path={this.props.file.path} 
+            content={this.props.file.content} 
+            isFetching={this.props.file.isFetching}
+            fetchPath={(path) => this.props.fetchPath(path)}
+            updateFile={this.props.updateFile} /> 
+
+            default :
+              return  <ContentEditor 
+            sha={this.props.file.sha} 
+            path={this.props.file.path} 
+            content={this.props.file.content} 
+            updateFile={this.props.updateFile} /> 
+          }       
+        } else {
+          console.log(this.props.file)
+            return <div>Loading</div>
+        }
+      }
+    }
+  }   
 }
+
