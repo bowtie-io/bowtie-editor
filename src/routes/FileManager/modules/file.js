@@ -28,29 +28,38 @@ const PATH_FAIL    = 'PATH_FAIL'
 const DECODE_PATH  = 'DECODE_PATH'
 const LOAD_PATH = 'LOAD_PATH'
 
-export function loadPath() {
-  return {
-    type: 'LOAD_PATH',
-    }
-}
-
-export function decodePath(data) {
-  return {
-    type: 'DECODE_PATH',
-    content: data, 
-    }
-}
 
 export function requestPath() {
   return {
     type: 'REQUEST_PATH',
     }
 }
-export function receivePath(sha, path) {
+export function receivePath(pathResponse) {
+  let type = Object.prototype.toString.call(pathResponse)
+  if ( type == '[object Array]') {
+    return {
+      type: 'RECEIVE_PATH',
+      tree: pathResponse,
+      directory: true
+    }
+  } else {
+    return {
+      type: 'RECEIVE_PATH',
+      sha: pathResponse.sha,
+      path: pathResponse.path,
+      directory: false
+    }
+  }
+}
+export function decodePath(data) {
   return {
-    type: 'RECEIVE_PATH',
-    sha: sha,
-    path: path
+    type: 'DECODE_PATH',
+    content: data, 
+    }
+}
+export function loadPath() {
+  return {
+    type: 'LOAD_PATH',
     }
 }
 export function pathFail(data) {
@@ -65,25 +74,24 @@ export function fetchPath(path) {
     dispatch(requestPath()) // set state to fetching
     return fetch(`${API_ROOT}/${PROJECT.full_name}/contents/${path}`, {
       method: "GET",
-      })
-      .then((response) => {
-        if (response.ok) {
-          return response.json()
-        } else {
-          return null
-        }
-        })
-        .then((file) => {
-          dispatch(receivePath(file.sha, file.path))
-          return file
-        })
-        .then((file)  => Buffer.from(file.content, 'base64').toString('ascii') )
-        .then((content) => {
-          dispatch(decodePath(content))
-          return content
-        })
-      .then(() => dispatch(loadPath()))
-      .catch((err) => console.error(err))
+    })
+    .then((response) => {
+      if (response.ok) {
+        return response.json()
+      } else {
+        return null
+      }
+    })
+    .then((path) => {
+      dispatch(receivePath(path))
+      return path
+    })
+    .then((data) =>  Buffer.from(data.content, 'base64').toString('ascii'))
+    .then((content)   => {
+      dispatch(decodePath(content))
+    })
+    .then(()   => dispatch(loadPath()))
+    .catch((err) => console.error(err))
   }
 }
 
@@ -153,9 +161,11 @@ export default function file (state = initialState, action) {
   }
   case RECEIVE_PATH :
     return {
-    ...state,
+    isFetching: true,
     sha: action.sha,
-    path: action.path
+    path: action.path,
+    tree: action.tree,
+    directory: action.directory
   }
   case DECODE_PATH :
     return {

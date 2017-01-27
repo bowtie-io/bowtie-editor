@@ -7,9 +7,9 @@ export default (store) => ({
     require.ensure([], (require) => {
       const FileManager = require('./containers/FileManagerContainer').default
       const reducer = require('./modules/file').default
-      injectReducer(store, { key: 'filemanager', reducer })
+      injectReducer(store, { key: 'file', reducer })
       cb(null, FileManager)
-    }, 'filemanager')
+    }, 'file')
   }
 })
 

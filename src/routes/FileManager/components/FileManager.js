@@ -11,7 +11,7 @@
 import React, { PropTypes, Component } from 'react'
 import { ContentEditor } from '~/components'
 import { sanitizeDirRoute } from '~/utils/sanitize'
-import { CodeEditor } from '~/components'
+import { CodeEditor, FileBrowser } from '~/components'
 import { sanitize } from '~/utils/sanitize'
 
 export default class FileManager extends Component {
@@ -26,8 +26,18 @@ export default class FileManager extends Component {
   }
     
   render () {
-    if (this.props.file.content.length === 0) {
+    if (this.props.file.content !== 0) {
       return <div>Loading</div>
+    } else if (this.props.directory === true) {
+      return (
+        <div className="">
+        {sanitize(this.props.location.pathname)} Directory
+        <br />
+        <hr />
+          <FileBrowser 
+          files={this.props.file.tree} currentDir={this.props.params.splat} /> }
+          </div>
+      )
     } else {
     switch (this.props.location.pathname.split('.')[1]) {
       case "html" :
@@ -92,8 +102,7 @@ export default class FileManager extends Component {
                     path={this.props.file.path} 
                     content={this.props.file.content} 
                     updateFile={this.props.updateFile} /> 
-    }
-
+    }       
     }
   }
 }
