@@ -181,7 +181,7 @@ export function updateFile(content, sha, path, message) {
       }
     })
     .then((data) => dispatch(receiveUpdatedFile(data)))
-    .then((data) => dispatch(fetchFile(`${path}`)))
+    .then((data) => dispatch(fetchPath(`${path}`)))
   }
 }
 
