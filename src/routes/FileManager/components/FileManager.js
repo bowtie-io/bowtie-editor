@@ -60,66 +60,66 @@ export default class FileManager extends Component {
           switch (this.props.location.pathname.split('.')[1]) {
             case "html" :
               return  <CodeEditor  
-            mode="htmlmixed"
-            sha={this.props.file.sha} 
-            path={this.props.file.path} 
-            content={this.props.file.content} 
-            isFetching={this.props.file.isFetching}
-            fetchPath={(path) => this.props.fetchPath(path)}
-            updateFile={this.props.updateFile} /> 
+                        mode="htmlmixed"
+                        sha={this.props.file.sha} 
+                        path={this.props.file.path} 
+                        content={this.props.file.content} 
+                        isFetching={this.props.file.isFetching}
+                        fetchPath={(path) => this.props.fetchPath(path)}
+                        updateFile={this.props.updateFile} /> 
             case "js" :
               return  <CodeEditor  
-            mode="javascript"
-            sha={this.props.file.sha} 
-            path={this.props.file.path} 
-            content={this.props.file.content} 
-            isFetching={this.props.file.isFetching}
-            fetchPath={(path) => this.props.fetchPath(path)}
-            updateFile={this.props.updateFile} /> 
+                        mode="javascript"
+                        sha={this.props.file.sha} 
+                        path={this.props.file.path} 
+                        content={this.props.file.content} 
+                        isFetching={this.props.file.isFetching}
+                        fetchPath={(path) => this.props.fetchPath(path)}
+                        updateFile={this.props.updateFile} /> 
             case "yml" || "yaml":
               return  <CodeEditor  
-            mode="yaml"
-            sha={this.props.file.sha} 
-            path={this.props.file.path} 
-            content={this.props.file.content} 
-            isFetching={this.props.file.isFetching}
-            fetchPath={(path) => this.props.fetchPath(path)}
-            updateFile={this.props.updateFile} /> 
+                        mode="yaml"
+                        sha={this.props.file.sha} 
+                        path={this.props.file.path} 
+                        content={this.props.file.content} 
+                        isFetching={this.props.file.isFetching}
+                        fetchPath={(path) => this.props.fetchPath(path)}
+                        updateFile={this.props.updateFile} /> 
             case "xml":
               return  <CodeEditor  
-            mode="xml"
-            sha={this.props.file.sha} 
-            path={this.props.file.path} 
-            content={this.props.file.content} 
-            isFetching={this.props.file.isFetching}
-            fetchPath={(path) => this.props.fetchPath(path)}
-            updateFile={this.props.updateFile} /> 
+                        mode="xml"
+                        sha={this.props.file.sha} 
+                        path={this.props.file.path} 
+                        content={this.props.file.content} 
+                        isFetching={this.props.file.isFetching}
+                        fetchPath={(path) => this.props.fetchPath(path)}
+                        updateFile={this.props.updateFile} /> 
 
             case "scss" || "sass" :
               return  <CodeEditor  
-            mode="sass"
-            sha={this.props.file.sha} 
-            path={this.props.file.path} 
-            content={this.props.file.content} 
-            isFetching={this.props.file.isFetching}
-            fetchPath={(path) => this.props.fetchPath(path)}
-            updateFile={this.props.updateFile} /> 
+                        mode="sass"
+                        sha={this.props.file.sha} 
+                        path={this.props.file.path} 
+                        content={this.props.file.content} 
+                        isFetching={this.props.file.isFetching}
+                        fetchPath={(path) => this.props.fetchPath(path)}
+                        updateFile={this.props.updateFile} /> 
             case "md" :
               return  <CodeEditor  
-            mode="markdown"
-            sha={this.props.file.sha} 
-            path={this.props.file.path} 
-            content={this.props.file.content} 
-            isFetching={this.props.file.isFetching}
-            fetchPath={(path) => this.props.fetchPath(path)}
-            updateFile={this.props.updateFile} /> 
+                        mode="markdown"
+                        sha={this.props.file.sha} 
+                        path={this.props.file.path} 
+                        content={this.props.file.content} 
+                        isFetching={this.props.file.isFetching}
+                        fetchPath={(path) => this.props.fetchPath(path)}
+                        updateFile={this.props.updateFile} /> 
 
             default :
               return  <ContentEditor 
-            sha={this.props.file.sha} 
-            path={this.props.file.path} 
-            content={this.props.file.content} 
-            updateFile={this.props.updateFile} /> 
+                        sha={this.props.file.sha} 
+                        path={this.props.file.path} 
+                        content={this.props.file.content} 
+                        updateFile={this.props.updateFile} /> 
           }       
         }
       }
