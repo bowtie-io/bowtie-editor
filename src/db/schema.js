@@ -46,7 +46,7 @@ export const PROJECTS = [
   {
   id: "1",
   name: "igolden.github.io",
-  full_name: "igolden/igolden.github.io",
+  full_name: "bowtie-io/template-event-site",
   project_settings: {
     domain: {},
     hosting: {},
@@ -94,7 +94,7 @@ export const PROJECTS = [
 export const PROJECT = {
   id: "1",
   name: "igolden.github.io",
-  full_name: "igolden/igolden.github.io",
+  full_name: "bowtie-io/template-event-site",
   project_settings: {
     domain: {},
     hosting: {},

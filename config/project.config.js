@@ -25,7 +25,7 @@ const config = {
   // Server Configuration
   // ----------------------------------
   server_host : "localhost", // use string 'localhost' to prevent exposure on local network
-  server_port : 8080,
+  server_port :  "8080",
 
   // ----------------------------------
   // Compiler Configuration
@@ -35,11 +35,11 @@ const config = {
     plugins        : ['transform-runtime'],
     presets        : ['es2015', 'react', 'stage-0']
   },
-  compiler_devtool         : 'source-map',
+  compiler_devtool         : null,
   compiler_hash_type       : 'hash',
   compiler_fail_on_warning : false,
   compiler_quiet           : false,
-  compiler_public_path     : '/',
+  compiler_public_path     : '/dist/',
   compiler_stats           : {
     chunks : false,
     chunkModules : false,
