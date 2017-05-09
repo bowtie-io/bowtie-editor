@@ -12,6 +12,9 @@ export const createRoutes = (store) => ({
     ProjectRoute(store),
     FileManagerRoute(store),
   ]
+},  {
+  path        : '/callback',
+  component   : CoreLayout,
 })
 
 export default createRoutes
