@@ -1,8 +1,6 @@
 import { injectReducer } from '~/store/reducers'
 
 export default (store) => ({
-  path : 'project/:id',
-
   getComponent (nextState, cb) {
     require.ensure([], (require) => {
       const Counter = require('./containers/ProjectContainer').default

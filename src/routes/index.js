@@ -5,21 +5,17 @@ import LoginRoute from './Login'
 import ProjectRoute from './Project'
 import FileManagerRoute from './FileManager'
 import OAuthCallback from '../components/OAuthCallback'
-
 export const createRoutes = (store) => ({
   path        : '/',
   indexRoute  : LoginRoute,
   childRoutes : [
     {
+    path: '/dashboard',
     component   : CoreLayout,
+    indexRoute : ProjectRoute(store),
     childRoutes : [
-      ProjectRoute(store),
       FileManagerRoute(store),
     ]
-  },
-  {
-    path        : '/dashboard',
-    component   : CoreLayout,
   },
   {
     path        : '/callback',
