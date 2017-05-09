@@ -4,6 +4,7 @@ import Home from './Home'
 import LoginRoute from './Login'
 import ProjectRoute from './Project'
 import FileManagerRoute from './FileManager'
+import OAuthCallback from '../components/OAuthCallback'
 
 export const createRoutes = (store) => ({
   path        : '/',
@@ -18,9 +19,10 @@ export const createRoutes = (store) => ({
   },
   {
     path        : '/callback',
+    component   : OAuthCallback
   }
   ]
 }
-                                       )
+)
 
 export default createRoutes

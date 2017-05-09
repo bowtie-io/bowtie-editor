@@ -7,7 +7,7 @@
 import React, { PropTypes, Component } from 'react'
 import { CLIENT_ID } from '~/config/api'
 
-export default class ClassName extends Component {
+export default class LoginView extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -18,10 +18,23 @@ export default class ClassName extends Component {
   static propTypes = {
     // Document all properties
   }
+  _renderDashboard = () => {
+    return (
+      <div>Dashboard</div>
+    )
+  }
+  _renderLogin = () => {
+    return (
+      <a href={`https://github.com/login/oauth/authorize?scope=user:email&client_id=${CLIENT_ID}`}>Login to Github</a>
+    )
+  }
   render () {
     return (
       <div className="">
-      <a href={`https://github.com/login/oauth/authorize?scope=user:email&client_id=${CLIENT_ID}`}>Login to Github</a>
+      {window.localStorage.githubKey
+        ? this._renderDashboard()
+        : this._renderLogin() 
+      }
       </div>
     )
   }
