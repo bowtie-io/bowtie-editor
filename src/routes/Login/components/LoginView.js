@@ -30,7 +30,7 @@ export default class LoginView extends Component {
   }
   _renderLogin = () => {
     return (
-      <a href={`https://github.com/login/oauth/authorize?scope=user:email&client_id=${CLIENT_ID}`}>Login to Github</a>
+      <a href={`https://github.com/login/oauth/authorize?scope=repo&client_id=${CLIENT_ID}`}>Login to Github</a>
     )
   }
   render () {
