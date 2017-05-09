@@ -13,7 +13,7 @@ export default class Project extends Component {
     }
   }
   componentDidMount() {
-      this.props.fetchProject(this.props.params.splat)
+      this.props.fetchProject(this.props.params.splat, window.localStorage.getItem('githubKey'))
   }
   render () {
     return (

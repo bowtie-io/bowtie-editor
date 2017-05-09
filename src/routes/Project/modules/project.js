@@ -35,7 +35,7 @@ export function failProject(data) {
     error: data
     }
 }
-export function fetchProject(path) {
+export function fetchProject(path, token) {
   return dispatch => { // return redux-thunk
     dispatch(requestProject()) // set state to fetching
     return fetch(`${API_ROOT}/${PROJECT.full_name}/contents`, {
@@ -43,7 +43,7 @@ export function fetchProject(path) {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Authorization" : "token f2d64d14d1b70994ed6a555140c6b6e9101c616c"
+        "Authorization" : `token ${token}`
       },
     })
       .then((response) => {
