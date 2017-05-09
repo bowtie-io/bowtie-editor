@@ -1,20 +1,26 @@
 // We only need to import the modules necessary for initial render
 import CoreLayout from '../layouts/CoreLayout'
 import Home from './Home'
+import LoginRoute from './Login'
 import ProjectRoute from './Project'
 import FileManagerRoute from './FileManager'
 
 export const createRoutes = (store) => ({
   path        : '/',
-  component   : CoreLayout,
-  indexRoute  : Home,
+  indexRoute  : LoginRoute,
   childRoutes : [
-    ProjectRoute(store),
-    FileManagerRoute(store),
+    {
+    component   : CoreLayout,
+    childRoutes : [
+      ProjectRoute(store),
+      FileManagerRoute(store),
+    ]
+  },
+  {
+    path        : '/callback',
+  }
   ]
-},  {
-  path        : '/callback',
-  component   : CoreLayout,
-})
+}
+                                       )
 
 export default createRoutes
