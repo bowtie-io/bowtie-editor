@@ -18,6 +18,10 @@ export const createRoutes = (store) => ({
     ]
   },
   {
+    path        : '/dashboard',
+    component   : CoreLayout,
+  },
+  {
     path        : '/callback',
     component   : OAuthCallback
   }

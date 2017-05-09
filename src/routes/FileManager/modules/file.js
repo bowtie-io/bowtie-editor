@@ -69,14 +69,14 @@ export function pathFail(data) {
     }
 }
 
-export function fetchPath(path) {
+export function fetchPath(path, token) {
   return dispatch => { // return redux-thunk
     dispatch(requestPath()) // set state to fetching
     return fetch(`${API_ROOT}/${PROJECT.full_name}/contents/${path}`, {
       method: "GET",
       headers: {
         "Accept"        : 'application/json',
-        "Authorization" : `token ${TOKEN}`
+        "Authorization" : `token ${token}`
       }
     })
     .then((response) => {

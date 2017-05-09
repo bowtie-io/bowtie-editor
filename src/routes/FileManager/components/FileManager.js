@@ -22,7 +22,7 @@ export default class FileManager extends Component {
     }
   }
   componentDidMount() {
-    this.props.fetchPath(this.props.params.splat)
+    this.props.fetchPath(this.props.params.splat, window.localStorage.getItem('githubKey'))
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.params.splat != nextProps.params.splat) {
@@ -31,6 +31,7 @@ export default class FileManager extends Component {
   }
 
   render () {
+    console.log(this.props)
     if (this.props.file.isFetching === true) {
       return <div>Loading</div>
     } else if (this.props.file.fail === true) {
