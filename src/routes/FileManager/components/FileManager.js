@@ -22,6 +22,7 @@ export default class FileManager extends Component {
     }
   }
   componentDidMount() {
+    console.log(window.localStorage.getItem('githubKey'))
     this.props.fetchPath(this.props.params.splat, window.localStorage.getItem('githubKey'))
   }
   componentWillReceiveProps(nextProps) {

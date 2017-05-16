@@ -46,6 +46,10 @@ if (project.env === 'development') {
       if (err) {
         return next(err)
       }
+	
+      res.set('Access-Control-Allow-Origin: *');
+      res.set('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+      res.set('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
       res.set('content-type', 'text/html')
       res.send(result)
       res.end()
