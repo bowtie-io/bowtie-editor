@@ -14,20 +14,21 @@ export default class OAuthCallback extends Component {
   constructor(props) {
     super(props)
   }
+  saveAuth = (code) => {
+    console.log(code)
+  }
   componentWillMount() {
     let params = new URLSearchParams(window.location.search)
     if (params.has('code')) {
       axios.request({
-        url: `https://github.com/login/oauth/access_token?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&code=${params.get('code')}`, 
-        method: 'post',
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-          'Access-Control-Allow-Origin': '*',
-          'Accept': 'application/json'
-        },
+        url: `http://localhost:6013/auth/${params.get('code')}`, 
+        method: 'GET',
       })
       .then(function (response) {
-        alert(response);
+        var code = response.data['token']
+        alert(JSON.stringify(code));
+        window.localStorage.setItem('githubKey', code)
+        browserHistory.push('/')
       })
       .catch(function (error) {
         console.log(error);

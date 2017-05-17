@@ -20,7 +20,7 @@ function mapStateToProps ({project}, {...props}) {
 }
 function mapDispatchToProps (dispatch) {
   return {
-    fetchProject: () => dispatch(fetchProject()),
+    fetchProject: (path, token) => dispatch(fetchProject(path, token)),
   }
 }
 export default connect(
