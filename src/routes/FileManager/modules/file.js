@@ -154,7 +154,7 @@ export function receiveUpdatedFile(sha, path) {
     }
 }
 
-export function updateFile(content, sha, path, message) {
+export function updateFile(content, sha, path, message, token) {
   return dispatch => { // return redux-thunk
     dispatch(postFile()) // set state to fetching
     return fetch(`${API_ROOT}/${PROJECT.full_name}/contents/${path}`, {

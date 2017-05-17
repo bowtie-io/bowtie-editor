@@ -56,7 +56,7 @@ export default class ContentEditor extends Component {
   render () {
     return (
       <div className="contentEditor">
-      <button onClick={ () => this.props.updateFile(this.state.editorState.getCurrentContent().getPlainText(), this.props.sha, this.props.path, this.props.commitMessage)  }>Update</button>
+      <button onClick={ () => this.props.updateFile(this.state.editorState.getCurrentContent().getPlainText(), this.props.sha, this.props.path, this.props.commitMessage, window.localStorage.getItem('githubKey'))  }>Update</button>
         <Editor
           toolbarClassName="home-toolbar"
           wrapperClassName="home-wrapper"
