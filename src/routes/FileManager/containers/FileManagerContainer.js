@@ -21,7 +21,7 @@ function mapStateToProps ({file}, {...props}) {
 }
 function mapDispatchToProps (dispatch) {
   return {
-    fetchPath: (fileName) => dispatch(fetchPath(fileName)),
+    fetchPath: (fileName, token) => dispatch(fetchPath(fileName, token)),
     updateFile: (content, sha, path, message) => dispatch(updateFile(content, sha, path, message)),
   }
 }
